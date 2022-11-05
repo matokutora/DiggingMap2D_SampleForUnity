@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Cell‚Ìí—Ş
+/// </summary>
 public enum CellType
 {
     Wall,
@@ -13,6 +16,12 @@ public enum CellType
 
 public class CellData
 {
+    /// <summary>
+    /// ‰Šú‰»
+    /// </summary>
+    /// <param name="wideIndex">X²‚É‘Î‚·‚éIndex</param>
+    /// <param name="heightIndex">Y²‚É‘Î‚·‚éIndex</param>
+    /// <param name="mapScale">ƒ}ƒbƒv‚Ì‘å‚«‚³</param>
     public CellData(int wideIndex, int heightIndex, int mapScale)
     {
         WideIndex = wideIndex;
@@ -21,7 +30,6 @@ public class CellData
     }
 
     public CellType CellType { get; set; } = CellType.Wall;
-
     public Transform Transform { get; set; }
 
     public int WideIndex { get; private set; }

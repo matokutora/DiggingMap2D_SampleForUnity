@@ -9,6 +9,9 @@ public class DiggingMap
 {
     int _errorCount = 0;
 
+    /// <summary>
+    /// 掘る方向を指定するための配列
+    /// </summary>
     Vector2Int[] _digDir = new Vector2Int[4]
     {
         new Vector2Int( -1, 0),
@@ -20,6 +23,9 @@ public class DiggingMap
     CellData[,] _cellDatas = null;
     List<Vector2Int> _callbackList = new List<Vector2Int>();
 
+    /// <summary>
+    /// スタックオーバーフローを避けるためのエラー上限
+    /// </summary>
     readonly int DigOverflowCount = 50;
 
     /// <summary>
