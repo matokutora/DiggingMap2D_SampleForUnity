@@ -1,9 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// マップを生成するためのデータクラス
+/// </summary>
+
 [System.Serializable]
 public class MapData
 {
+    /// <summary>
+    /// 各CellTypeに対するPrefabのデータ
+    /// </summary>
     [System.Serializable]
     public class TipData
     {

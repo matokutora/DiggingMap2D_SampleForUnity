@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 穴掘りをする実体
+/// </summary>
+
 public class DiggingMap
 {
     int _errorCount = 0;
@@ -13,10 +17,24 @@ public class DiggingMap
         new Vector2Int( 0, 1)
     };
 
-    CellData[,] _cellDatas;
+    CellData[,] _cellDatas = null;
     List<Vector2Int> _callbackList = new List<Vector2Int>();
 
     readonly int DigOverflowCount = 50;
+
+    /// <summary>
+    /// 親Objectにセットする
+    /// </summary>
+    /// <param name="parent"></param>
+    public void SetParent(Transform parent)
+    {
+        if (_cellDatas == null) return;
+
+        foreach (CellData cell in _cellDatas)
+        {
+            cell.Transform.SetParent(parent);
+        }
+    }
 
     /// <summary>
     /// 穴掘り法の開始
@@ -119,10 +137,14 @@ public class DiggingMap
         for (int wideIndex = 0; wideIndex < data.WideSize; wideIndex++)
             for (int heightIndex = 0; heightIndex < data.HeightSize; heightIndex++)
             {
-                CellType cellType = _cellDatas[wideIndex, heightIndex].CellType;
-                GameObject cell = Object.Instantiate(data.GetTipData(cellType));
+                CellData cellData = _cellDatas[wideIndex, heightIndex];
+
+                GameObject cell = Object.Instantiate(data.GetTipData(cellData.CellType));
+                cell.name = $"CellType:{cellData.CellType}; Address:{cellData.Position}";
                 cell.transform.position = new Vector2(wideIndex, heightIndex) * data.MapScale;
                 cell.transform.localScale = Vector2.one * data.MapScale;
+
+                cellData.Transform = cell.transform;
             }
     }
 

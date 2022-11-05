@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3013b244d158e5644ae490730d663dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parent: {fileID: 0}
   _mapData:
     _wideSize: 15
     _heightSize: 15
