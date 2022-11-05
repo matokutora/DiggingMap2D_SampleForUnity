@@ -31,7 +31,6 @@ public class DiggingMap
     /// <summary>
     /// 親Objectにセットする
     /// </summary>
-    /// <param name="parent"></param>
     public void SetParent(Transform parent)
     {
         if (_cellDatas == null) return;
@@ -45,7 +44,6 @@ public class DiggingMap
     /// <summary>
     /// 穴掘り法の開始
     /// </summary>
-    /// <param name="data"></param>
     public void Create(MapData data)
     {
         _cellDatas = new CellData[data.WideSize, data.HeightSize];
@@ -121,7 +119,6 @@ public class DiggingMap
     /// </summary>
     /// <param name="digDir">掘る方向</param>
     /// <param name="digAddress">現在番地</param>
-    /// <returns></returns>
     bool IsDigCheck(Vector2Int digDir, Vector2Int digAddress)
     {
         try
@@ -137,7 +134,6 @@ public class DiggingMap
     /// マップの可視化
     /// 各Cell情報に対するPrefabの生成。
     /// </summary>
-    /// <param name="data"></param>
     void OnView(MapData data)
     {
         for (int wideIndex = 0; wideIndex < data.WideSize; wideIndex++)
@@ -145,9 +141,10 @@ public class DiggingMap
             {
                 CellData cellData = _cellDatas[wideIndex, heightIndex];
 
+                // MapTipの作成
                 GameObject cell = Object.Instantiate(data.GetTipData(cellData.CellType));
                 cell.name = $"CellType:{cellData.CellType}; Address:{cellData.Position}";
-                cell.transform.position = new Vector2(wideIndex, heightIndex) * data.MapScale;
+                cell.transform.position = (Vector3Int)cellData.Position * data.MapScale;
                 cell.transform.localScale = Vector2.one * data.MapScale;
 
                 cellData.Transform = cell.transform;
@@ -158,7 +155,6 @@ public class DiggingMap
     /// 初期化。
     /// CellTypeをWallに設定
     /// </summary>
-    /// <param name="data"></param>
     void Initalize(MapData data)
     {
         for (int wideIndex = 0; wideIndex < data.WideSize; wideIndex++)
