@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapData:
-    _wideSize: 9
-    _heightSize: 9
+    _wideSize: 15
+    _heightSize: 15
     _mapScale: 1
     _tipDataList:
     - _cellType: 0

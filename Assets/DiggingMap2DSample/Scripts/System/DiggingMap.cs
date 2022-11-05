@@ -85,6 +85,7 @@ public class DiggingMap
         }
         else
         {
+            // エラーカウントの加算
             _errorCount++;
         }
 
